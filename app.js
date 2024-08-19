@@ -18,8 +18,8 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.set("view engine", "ejs");
 
-app.get("/owners", ownersRouter);
-app.get("/users", usersRouter);
-app.get("/products", productsRouter);
+app.use("/owners", ownersRouter);
+app.use("/users", usersRouter);
+app.use("/products", productsRouter);
 
 app.listen(3000); 
