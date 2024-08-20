@@ -9,6 +9,8 @@ const productsRouter = require('./routes/productsRouter');
 
 const db = require("./config/mongoose-connection");
 
+require("dotenv").config();
+
 
 
 app.use(express.json());
