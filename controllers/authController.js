@@ -36,3 +36,23 @@ module.exports.registerUser = async function(req,res){
         res.status(400).send(err.message);
     }
 }
+
+module.exports.loginUser = async function(req,res){
+ 
+    let {email, password} = req.body;
+    let user = await userModel.findOne({ email: email});
+ 
+
+    if(!user) return res.status(404).send("Email or Password Invalid");
+    
+
+    bcrypt.compare(password, user.password, function(err, result){
+        if(result){
+            res.send("Login Successfull")
+        }
+        else {
+            res.status(404).send("Email or Password Invalid");
+        }
+    }
+)
+};
