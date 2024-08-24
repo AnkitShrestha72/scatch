@@ -48,7 +48,9 @@ module.exports.loginUser = async function(req,res){
 
     bcrypt.compare(password, user.password, function(err, result){
         if(result){
-            res.send("Login Successfull")
+            let token = generateToken(user);
+            res.cookie('token', token);
+            res.send(user.fullname)
         }
         else {
             res.status(404).send("Email or Password Invalid");
